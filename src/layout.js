@@ -2,7 +2,7 @@ import app from 'ampersand-app'
 import React from 'react'
 import localLinks from'local-links'
 import ampersandMixin from 'ampersand-react-mixin'
-import { Nav, Navbar, NavItem } from 'react-bootstrap'
+import { Nav, Navbar, NavItem, Footer } from 'react-bootstrap'
 
 export default React.createClass({
 	mixins: [ampersandMixin],
@@ -33,9 +33,8 @@ export default React.createClass({
 					<Navbar.Collapse>
 						<Nav>
 							<NavItem eventKey={1} href='/'>| Kelly Nelson Photography |</NavItem>
-							<NavItem eventKey={2} href='/exteriors'>Exteriors</NavItem>
-							<NavItem eventKey={3} href='/interiors'>Interiors</NavItem>
-							<NavItem eventKey={4} href='/about'>About</NavItem>
+							<NavItem eventKey={2} href='/architecture'>Architecture</NavItem>
+							<NavItem eventKey={4} href='/kelly'>Kelly</NavItem>
 							<NavItem eventKey={5} href='/contact'>Contact</NavItem>
 						</Nav>
 					</Navbar.Collapse>
@@ -43,6 +42,13 @@ export default React.createClass({
 				<div className='container main-children-container'>
 					{this.props.children} 
 				</div>
+				<footer>
+					<div className='row'>
+						<div className='col-xs-12'>
+							<p className='copyright'>&copy; 2017 KELLY NELSON PHOTOGRAPHY. ALL RIGHTS RESERVED.</p>
+						</div>
+					</div>
+				</footer>
 			</div>
 		)
 	}

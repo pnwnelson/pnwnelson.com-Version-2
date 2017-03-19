@@ -6,7 +6,7 @@ module.exports = config({
 	clearBeforeBuild: '!(images|favicon.ico|index.html)',
 	isDev: process.env.NODE_ENV !== 'production',
 	hostname: '192.168.86.237',
-	html: false,
+	html: true,
 	module: {
       loaders: [
           { test: /\.js$/, exclude: /node_modules/, loader: "babel", query: {presets:['react','es2015']}}

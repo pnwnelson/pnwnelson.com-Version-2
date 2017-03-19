@@ -32,24 +32,23 @@ export default React.createClass ({
 
 	render() {
 		return (
-			<div className='grid-flex-container'>
-			<div className='grid-flex-cell'>
-				<h3>Hire Me</h3>
-				<p>
-				Not much to my website. Pretty simple. If you like my work, let's talk. Just let me know some details about your project and
-				I'll get back with you as soon as I can.  
-				</p>
-				<p>
-				Just shoot me an email at the address below until I code up a more elegant contact form. I look forward to hearing from you. 
-				</p>
-				<p>
-
-				<a href='mailto:kelly@pnwnelson.com'>kelly[at]pnwnelson[dot]com</a>
-
-				</p>
-
-			</div>
-			<div className='grid-flex-cell grid-flex-cell-1of3'></div>
+			<div className='row'>
+				<div className='col-xs-12'>
+					<h1>Hire Quality</h1>
+					<hr />
+					<p>
+					Not much to my website. Pretty simple, nothing fancy, but fast. We're all busy so let's not waste time. 
+					</p>
+					<p>If you like my photography work, let's talk. Just let me know some details about your project and
+					I'll get back with you as soon as I can.  
+					</p>
+					<p>
+					Just shoot me an email at the address below until I code up a more elegant contact form. I look forward to hearing from you. 
+					</p>
+					<p>
+						<a href='mailto:kelly@pnwnelson.com'>kelly[at]pnwnelson[dot]com</a>
+					</p>
+				</div>
 			</div>
 		)
 	}

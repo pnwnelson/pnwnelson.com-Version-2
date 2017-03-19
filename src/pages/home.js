@@ -19,6 +19,7 @@ export default class HomePage extends Component {
 			<div>
 				<h1>Kelly Nelson Photography</h1>
 				<h5>Architectural and Real Estate Photography</h5>
+				<hr />
 					<img src={images} className='img-responsive front-page-photo' />
 			</div>
 		)

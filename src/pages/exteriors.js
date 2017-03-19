@@ -10,7 +10,7 @@ const smugmugImages = [
 	'https://photos.smugmug.com/Other/Architecture/n-fvWdJc/i-Cm8whcr/0/X2/i-Cm8whcr-X2.jpg'
 ];
 
-export default class ExteriorsPage extends Component {
+export default class ArchPage extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -34,16 +34,20 @@ export default class ExteriorsPage extends Component {
 		const {images, selectedImage } = this.state;
 		return (
 			<div>
-				<h3>Exteriors</h3>
-				<div className="image-gallery">
-					<div className="image-scroller">
-						{images.map((image, index) => (
-							<div key={index} onClick={this.handleThumbClick.bind(this,image)}>
-								<img src={image} />
-							</div>
-						))}
+				<h1>Architecture</h1>
+				<div className='image-gallery'>
+					<div className='row'>
+					<hr/>
+						<div className='image-scroller'>
+							{images.map((image, index) => (
+								<div key={index} onClick={this.handleThumbClick.bind(this,image)}>
+									<img src={image} />
+								</div>
+							))}
+						</div>
+						<hr/>
 					</div>
-					<div className="gallery-image">
+					<div className='row-fluid gallery-image'>
 						<div>
 							<img src={selectedImage} />
 						</div>
