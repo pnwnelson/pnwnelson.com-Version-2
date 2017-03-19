@@ -2,16 +2,10 @@ import app from 'ampersand-app'
 import React from 'react'
 import localLinks from'local-links'
 import ampersandMixin from 'ampersand-react-mixin'
+import { Nav, Navbar, NavItem } from 'react-bootstrap'
 
 export default React.createClass({
 	mixins: [ampersandMixin],
-
-	// componentDidMount() {
- //    $('.top-nav a').on('click', function(){
- //        $(".menu-toggle").click(); //bootstrap 3.x by Richard
- //        this.forceUpdate({});
- //    });
- //  },
 
 	onClick (event) {
 		const pathname = localLinks.getLocalPathname(event)
@@ -29,29 +23,43 @@ export default React.createClass({
 
 		return (
 			<div onClick={this.onClick}>
-				<nav className='top-nav top-nav-light cf' role='navigation' onSelect={() => null}>
-					<input id='menu-toggle' className='menu-toggle' type='checkbox'/>
-					<label htmlFor='menu-toggle'>Menu</label>
-					<ul className='list-unstyled list-inline cf'>
-						<a href='/'><img src='./images/logo.jpg' alt='logo' className='nav-bar-logo pull-left'/></a>
-						<li>| Kelly Nelson Photography |</li>
-						<li ><a href='/exteriors'>Exteriors</a></li>
-						<li><a href='/interiors'>Interiors</a></li>
-						<li><a href='/about'>About</a></li>
-						<li><a href='/contact'>Contact</a></li>
-					</ul>
-				</nav>
+				<Navbar collapseOnSelect>
+					<Navbar.Header>
+						<Navbar.Brand>
+							<a href='/'><img src='./images/logo.jpg' alt='logo' className='nav-bar-logo pull-left'/></a>
+						</Navbar.Brand>
+						<Navbar.Toggle />
+					</Navbar.Header>
+					<Navbar.Collapse>
+						<Nav>
+							<NavItem eventKey={1} href='/'>| Kelly Nelson Photography |</NavItem>
+							<NavItem eventKey={2} href='/exteriors'>Exteriors</NavItem>
+							<NavItem eventKey={3} href='/interiors'>Interiors</NavItem>
+							<NavItem eventKey={4} href='/about'>About</NavItem>
+							<NavItem eventKey={5} href='/contact'>Contact</NavItem>
+						</Nav>
+					</Navbar.Collapse>
+				</Navbar>
 				<div className='container main-children-container'>
 					{this.props.children} 
 				</div>
-				<footer>
-				test
-					<ul className='list-unstyled list-inline cf'></ul>
-				</footer>
 			</div>
 		)
 	}
 })
+					// <nav className='top-nav top-nav-light cf' role='navigation' onSelect={() => null}>
+					// 	<input id='menu-toggle' className='menu-toggle' type='checkbox'/>
+					// 	<label htmlFor='menu-toggle'>Menu</label>
+					// 	<ul className='list-unstyled list-inline cf'>
+					// 		<a href='/'><img src='./images/logo.jpg' alt='logo' className='nav-bar-logo pull-left'/></a>
+					// 		<li>| Kelly Nelson Photography |</li>
+					// 		<li ><a href='/exteriors'>Exteriors</a></li>
+					// 		<li><a href='/interiors'>Interiors</a></li>
+					// 		<li><a href='/about'>About</a></li>
+					// 		<li><a href='/contact'>Contact</a></li>
+					// 	</ul>
+					// </nav>
+
 
 					// <ul className='list-unstyled list-inline cf'>
 					// 	<li><a href='/'><img src='./images/logo.jpg' alt='logo' className='nav-bar-logo pull-left'/></a></li>
