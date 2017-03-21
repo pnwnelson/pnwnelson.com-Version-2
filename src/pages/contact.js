@@ -7,14 +7,6 @@ export default React.createClass ({
 
 	onClick() {
 
-		const transporter = nodemailer.createTransport({
-			service: 'gmail',
-			auth: {
-				user: 'nelson20@gmail.com',
-				pass: 'Indy!@34'
-			}
-		});
-
 		const mailOptions = {
 			from: '"PNWNelson" <nelson20@gmail.com>',
 			to: 'nelson20@gmail.com',

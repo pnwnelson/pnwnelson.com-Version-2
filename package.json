@@ -6,7 +6,7 @@
   "scripts": {
     "start": "hjs-dev-server",
     "build": "NODE_ENV=production webpack",
-    "deploy": "npm run build && surge -p public -d pnwnelson.surge.sh"
+    "deploy": "npm run build && surge -p public -d pnwnelson.com"
   },
   "author": "@pnwnelson",
   "license": "MIT",
@@ -15,7 +15,8 @@
     "nodemailer": "^3.1.7",
     "pug": "^2.0.0-beta11",
     "react": "^15.4.2",
-    "react-bootstrap": "^0.30.8"
+    "react-bootstrap": "^0.30.8",
+    "react-ga": "^2.1.2"
   },
   "devDependencies": {
     "ampersand-app": "^2.0.0",
@@ -31,6 +32,7 @@
     "bootstrap": "^3.3.7",
     "css-loader": "^0.27.3",
     "file-loader": "^0.10.1",
+    "fs": "0.0.1-security",
     "hjs-webpack": "^8.4.3",
     "json-loader": "^0.5.4",
     "local-links": "^1.4.1",

@@ -7,6 +7,8 @@ import ArchPage from './pages/exteriors'
 import InteriorsPage from './pages/interiors'
 import KellyPage from './pages/kelly'
 import ContactPage from './pages/contact'
+import ResumePage from './pages/resume'
+import MessagePage from './pages/message'
 import Layout from './layout'
 
 export default Router.extend({
@@ -26,7 +28,9 @@ export default Router.extend({
 		'architecture': 'architecture',
 		'interiors': 'interiors',
 		'kelly': 'kelly',
-		'contact': 'contact'
+		'contact': 'contact',
+		'resume': 'resume',
+		'*catchall':'fourOhfour'
 	},
 
 	home () {
@@ -47,5 +51,13 @@ export default Router.extend({
 
 	contact () {
 		this.renderPage(ContactPage)
+	},
+
+	resume () {
+		this.renderPage(ResumePage)
+	},
+
+	fourOhfour () {
+		this.renderPage(MessagePage, {title: '404', message: 'Uh oh. A page you were looking for does not exist.'})
 	}
 })
