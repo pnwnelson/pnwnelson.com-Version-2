@@ -7,7 +7,6 @@ import ArchPage from './pages/exteriors'
 import InteriorsPage from './pages/interiors'
 import KellyPage from './pages/kelly'
 import ContactPage from './pages/contact'
-import ResumePage from './pages/resume'
 import MessagePage from './pages/message'
 import Layout from './layout'
 
@@ -26,10 +25,9 @@ export default Router.extend({
 	routes: {
 		'': 'home',
 		'architecture': 'architecture',
-		'interiors': 'interiors',
+		// 'interiors': 'interiors',
 		'kelly': 'kelly',
 		'contact': 'contact',
-		'resume': 'resume',
 		'*catchall':'fourOhfour'
 	},
 
@@ -41,9 +39,9 @@ export default Router.extend({
 		this.renderPage(ArchPage)
 	},
 
-	interiors () {
-		this.renderPage(InteriorsPage)
-	},
+	// interiors () {
+	// 	this.renderPage(InteriorsPage)
+	// },
 
 	kelly () {
 		this.renderPage(KellyPage)
@@ -51,10 +49,6 @@ export default Router.extend({
 
 	contact () {
 		this.renderPage(ContactPage)
-	},
-
-	resume () {
-		this.renderPage(ResumePage)
 	},
 
 	fourOhfour () {
