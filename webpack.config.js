@@ -20,12 +20,13 @@ var config = getConfig({
 			'200.html': data.defaultTemplate(
 				{
 					head: `<link rel="shortcut icon" href="favicon.ico">`,
-					head: `<meta name="description" content="Beautiful and professional architectural and real estate photography based in the Pacific Northwest. Serving Seattle, Portland, Spokane, Tri-Cities and beyond.">`
+					head: `<meta name="description" content="Kelly Nelson offers beautiful and professional architectural and real estate photography based in the Pacific Northwest. Photographer serving Seattle, Portland, Spokane, Tri-Cities and beyond.">`
 				}),
 			'index.html': data.defaultTemplate(
 				{
-					title: 'Kelly Nelson Photography',
+					title: 'Kelly Nelson | Pacific Northwest Architectural Photographer',
 					head: `<link rel="shortcut icon" href="favicon.ico">`,
+					head: `<meta name="description" content="Kelly Nelson offers beautiful and professional architectural and real estate photography based in the Pacific Northwest. Photographer serving Seattle, Portland, Spokane, Tri-Cities and beyond.">`,
 					html: `<div id='root'>${layoutPageHtmlString}</div>`
 				})
 

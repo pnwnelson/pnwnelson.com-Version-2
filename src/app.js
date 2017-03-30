@@ -14,9 +14,9 @@ app.extend({
 		this.router = new Router()
 		this.router.history.start() // history object is singleton property of router which means it runs once
 
-		// ReactGA.initialize('UA-74423057-1'); // Google Analytics stuff
-  //   ReactGA.pageview('/');
-  //   ReactGA.pageview('/contact')
+		ReactGA.initialize('UA-74423057-1'); // Google Analytics stuff
+    ReactGA.pageview('/');
+    ReactGA.pageview('/contact')
 	}
 })
 

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Model from 'ampersand-model'
+
 //import api from '.././models/api'
 
 const flickrImages = [];
