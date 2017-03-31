@@ -3,7 +3,6 @@ import React from 'react'
 import localLinks from'local-links'
 import ampersandMixin from 'ampersand-react-mixin'
 import { Nav, Navbar, NavItem, Footer } from 'react-bootstrap'
-import EasyTransition from 'react-easy-transition'
 
 export default React.createClass({
 	mixins: [ampersandMixin],
@@ -41,13 +40,7 @@ export default React.createClass({
 					</Navbar.Collapse>
 				</Navbar>
 				<div className='container main-children-container'>
-					<EasyTransition
-						path={location.pathname}
-						initialStyle={{opacity: 0}}
-						transition='opacity 0.1s ease-in'
-						finalStyle={{opacity: 1}}>
-						{this.props.children} 
-					</EasyTransition>
+					{this.props.children} 
 				</div>
 				<footer>
 					<div className='row'>
