@@ -1,27 +1,36 @@
 import React, { Component } from 'react'
+import Model from 'ampersand-model'
 
-const smugmugImages = [
-	'https://photos.smugmug.com/Other/Architecture/n-fvWdJc/i-pZwKZLm/0/X2/i-pZwKZLm-X2.jpg',
-	'https://photos.smugmug.com/Other/Architecture/n-fvWdJc/i-zxgXQw9/0/X2/i-zxgXQw9-X2.jpg',
-	'https://photos.smugmug.com/Other/Architecture/n-fvWdJc/i-JJ5NvtQ/0/X2/i-JJ5NvtQ-X2.jpg',
-	'https://photos.smugmug.com/Other/Architecture/n-fvWdJc/i-bhmwKg3/0/X2/i-bhmwKg3-X2.jpg',
-	'https://photos.smugmug.com/Other/Architecture/n-fvWdJc/i-PBDrPF3/0/X2/i-PBDrPF3-X2.jpg',
-	'https://photos.smugmug.com/Other/Architecture/n-fvWdJc/i-fJn5rVH/0/X2/i-fJn5rVH-X2.jpg',
-	'https://photos.smugmug.com/Other/Architecture/n-fvWdJc/i-Cm8whcr/0/X2/i-Cm8whcr-X2.jpg'
-];
+//import api from '.././models/api'
 
-export default class InteriorsPage extends Component {
+const flickrImages = [];
+
+export default class IntPage extends Component {
+
+
 	constructor(props) {
 		super(props);
 		this.state = {
-			images: smugmugImages,
-			selectedImage: smugmugImages[0]
+			images: flickrImages,
+			selectedImage: flickrImages[0]
 		}
 	}
 
 	componentDidMount() {
-		const API_KEY = 'Jw6VBLT6b6Jc7w9ShnhK82dmkJS9vVj4'
-		const API_ENDPOINT = 'http://api.smugmug.com/services/api/rest/1.3.0/'
+		const API_KEY = '3ab694c0389174d227b10d363b55d94f'
+		const API_ENDPOINT = `https://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=${API_KEY}&photoset_id=72157684641469940&format=json&nojsoncallback=1`
+
+
+
+		fetch(API_ENDPOINT).then((response) => {
+			return response.json().then((json) => {
+				const images = json.photoset.photo.map(({farm, server, id, secret}) => {
+					return `https://farm${farm}.staticflickr.com/${server}/${id}_${secret}_h.jpg`
+				})
+				this.setState({images, selectedImage: images[0]})
+			})
+		})
+
 	}
 
 	handleThumbClick(selectedImage) {
@@ -31,6 +40,7 @@ export default class InteriorsPage extends Component {
 	}
 
 	render() {
+		console.log("Images: ", this.state.images)
 		const {images, selectedImage } = this.state;
 		return (
 			<div>

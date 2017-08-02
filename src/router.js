@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom'
 import Router from 'ampersand-router'
 import HomePage from './pages/home'
 import ArchPage from './pages/exteriors'
-import InteriorsPage from './pages/interiors'
+import IntPage from './pages/interiors'
 import KellyPage from './pages/kelly'
 import ContactPage from './pages/contact'
 import MessagePage from './pages/message'
@@ -25,7 +25,7 @@ export default Router.extend({
 	routes: {
 		'': 'home',
 		'architecture': 'architecture',
-		// 'interiors': 'interiors',
+		'interiors': 'interiors',
 		'kelly': 'kelly',
 		'contact': 'contact',
 		'*catchall':'fourOhfour'
@@ -39,9 +39,9 @@ export default Router.extend({
 		this.renderPage(ArchPage)
 	},
 
-	// interiors () {
-	// 	this.renderPage(InteriorsPage)
-	// },
+	interiors () {
+		this.renderPage(IntPage)
+	},
 
 	kelly () {
 		this.renderPage(KellyPage)
