@@ -1,11 +1,8 @@
 import app from 'ampersand-app'
 import Router from './router' // this is the router.js file we created
-//import styles from './styles/main.styl'
 import './styles/main.css'
 import 'bootstrap/dist/css/bootstrap.css';
 import ReactGA from 'react-ga'
-
-//import fontAwesome from '../node_modules/font-awesome/css/font-awesome.css'
 //import Me from './models/me'
 
 app.extend({

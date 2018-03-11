@@ -1,4 +1,4 @@
-// API call
+// old API call for Smugmug... switched to Flickr.
 
 const api = {
 	getImages() {
