@@ -11,7 +11,7 @@ var config = getConfig({
 	out: 'public',
 	clearBeforeBuild: '!(images|favicon.ico)',
 	isDev: process.env.NODE_ENV !== 'production',
-	hostname: '192.168.86.25',
+	hostname: 'localhost',
 	html: function (data) {
 		var homePageHtmlString = ReactDOMServer.renderToString(React.createElement(HomePage))
 		var layoutPageHtmlString = ReactDOMServer.renderToString(React.createElement(Layout))

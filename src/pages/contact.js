@@ -1,68 +1,106 @@
-import React from 'react'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
-//import nodemailer from 'nodemailer'
+class ContactPage extends Component {
 
-export default React.createClass ({
+	// static propTypes = {
+	// 	query: PropTypes.string.isRequired
+	// }
 
-	displayName: 'ContactPage',
+	constructor() {
+		super()
+		this.state = {
+			query: ''
+		},
+		this.onClick = this.onClick.bind(this)
+	}
 
-	onClick() {
+	updateQuery (query) {
+		this.setState({ 
+			query: query.trim() 
+		})
+	}
 
-		const mailOptions = {
-			from: '"PNWNelson" <nelson20@gmail.com>',
-			to: 'nelson20@gmail.com',
-			subject: 'From PNWNelson Contact Form',
-			text: '',
-		};
-
-		transporter.sendMail(mailOptions, (error, info) => {
-			if (error) {
-				return console.log(error);
+	onClick (e) {
+		e.preventDefault()
+		console.log('Submit button clicked')
+		// return
+		fetch('https://pnwnelson-prod.herokuapp.com/sendmail', {
+			method: 'POST',
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				email: this.state.email,
+				name: this.state.name,
+				text: this.state.text
+			})
+		})
+		console.log('finished kinda')
+		console.log('fetch fired off')
+		.then((response) => response.json())
+		.then((responseJson) => {
+			if (responseJson.success) {
+				this.setState({formSent: true})
 			}
-			console.log('Message %s sent: %s', info.messageId, info.response);
-		});
-	},
+			else this.setState({formSent: false})
+		})
+		.catch((error) => {
+			console.log(error)
+		})
+	}
 
 	render() {
+
+		const { query } = this.state
+
 		return (
 			<div className='row'>
-				<div className='col-xs-12'>
+				<div className='col-xs-12 col-lg-8'>
 					<h1>Hire Quality</h1>
 					<hr />
 					<p>
-					Not much to my website. Pretty simple, nothing fancy, but fast. We're all busy so let's not waste time. 
+					I am based out of the Tri-Cities, Washington (Richland, Pasco Kennewick) but am available to work in the Pacific Northwest and beyond. 
 					</p>
 					<p>If you like my photography work, let's talk. Just let me know some details about your project and
 					I'll get back with you as soon as I can.  
 					</p>
-					<p>
-					Just shoot me an email at the address below until I code up a more elegant contact form. I look forward to hearing from you. 
-					</p>
-					<p>
-						<a href='mailto:kelly@pnwnelson.com'>kelly[at]pnwnelson[dot]com</a>
-					</p>
+
+					<form onSubmit={this.onClick}>
+						<div className='row'>
+							<div className='col-xs-6'>
+								<div className='input-field'>
+									<label htmlFor='name'>Name</label>
+									<input className='form-control' type='text' id='name' name='name' placeholder='Enter Name' />
+								</div>
+							</div>
+							<div className='col-xs-6'>
+								<div className='form-group'>
+									<label htmlFor='email'>Email</label>
+									<input className='form-control' type='email' id='email' name='email' placeholder='Enter Email Address' />
+								</div>
+							</div>
+						</div>
+						<div className='form-group'>
+							<label htmlFor='text'>How can I help?</label>
+							<textarea 
+								className='form-control' 
+								rows='4' 
+								id='text' 
+								name='text' 
+								placeholder='Tell me about your project'
+								value={query}
+								onChange={(event) => this.updateQuery(event.target.value)} 
+							/>
+						</div>
+						<button type='submit' className='btn btn-primary'>Send</button>
+					</form>
+
 				</div>
 			</div>
 		)
 	}
-})
+}
 
-				// <form>
-				// 		<div className='form-element'>
-				// 			<label htmlFor='name'>Name</label>
-				// 			<input type='text' id='name' placeholder='Your name' className='form-input' />
-				// 		</div>
-				// 		<div className='form-element'>
-				// 			<label htmlFor='business-name'>Business Name</label>
-				// 			<input type='text' id='business-name' placeholder='Business Name' className='form-input' />
-				// 		</div>
-				// 		<div className='form-element'>
-				// 			<label htmlFor='email'>Email Address</label>
-				// 			<input type='text' id='email' placeholder='Email Address' className='form-input' />
-				// 		</div>
-				// 		<div className='form-element'>
-				// 			<label htmlFor='details'>Details</label>
-				// 			<textarea id='details' placeholder='Let me know some light details' className='form-input' />
-				// 		</div>
-				// 		<button type='submit' className='button button-primary' onClick={this.onClick}>Send</button>
-				// </form>
+export default ContactPage
