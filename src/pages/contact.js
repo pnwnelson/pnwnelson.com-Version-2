@@ -12,18 +12,22 @@ class ContactPage extends Component {
 		this.state = {
 			query: ''
 		},
-		this.onClick = this.onClick.bind(this)
+		this.updateQuery = this.updateQuery.bind(this);
+		this.onClick = this.onClick.bind(this);
 	}
 
 	updateQuery (query) {
 		this.setState({ 
-			query: query.trim() 
+			query: query
 		})
 	}
 
 	onClick (e) {
 		e.preventDefault()
 		console.log('Submit button clicked')
+		const email = document.getElementById('email').value;
+		const name = document.getElementById('name').value;
+		const message = document.getElementById('message').value;
 		// return
 		fetch('https://pnwnelson-prod.herokuapp.com/sendmail', {
 			method: 'POST',
@@ -32,22 +36,22 @@ class ContactPage extends Component {
 				'Content-Type': 'application/json'
 			},
 			body: JSON.stringify({
-				email: this.state.email,
-				name: this.state.name,
-				text: this.state.text
+				email: email,
+				name: name,
+				message: message
 			})
 		})
 		console.log('finished kinda')
 		console.log('fetch fired off')
-		.then((response) => response.json())
-		.then((responseJson) => {
-			if (responseJson.success) {
-				this.setState({formSent: true})
-			}
-			else this.setState({formSent: false})
-		})
-		.catch((error) => {
-			console.log(error)
+		.then((res) => res.json())
+		// .then((responseJson) => {
+		// 	if (responseJson.success) {
+		// 		this.setState({formSent: true})
+		// 	}
+		// 	else this.setState({formSent: false})
+		// })
+		.catch((err) => {
+			console.log(err)
 		})
 	}
 
@@ -83,12 +87,12 @@ class ContactPage extends Component {
 							</div>
 						</div>
 						<div className='form-group'>
-							<label htmlFor='text'>How can I help?</label>
+							<label htmlFor='message'>How can I help?</label>
 							<textarea 
 								className='form-control' 
 								rows='4' 
-								id='text' 
-								name='text' 
+								id='message' 
+								name='message' 
 								placeholder='Tell me about your project'
 								value={query}
 								onChange={(event) => this.updateQuery(event.target.value)} 
