@@ -16,6 +16,8 @@
     "prop-types": "^15.6.1",
     "pug": "^2.0.0-beta11",
     "react": "^15.4.2",
+    "react-before-after-slider": "^1.0.1",
+    "react-block-image": "^1.0.0",
     "react-bootstrap": "^0.30.8",
     "react-easy-transition": "^1.2.3",
     "react-ga": "^2.1.2"

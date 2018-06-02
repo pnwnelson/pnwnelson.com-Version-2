@@ -36,7 +36,8 @@ export default React.createClass({
 							<NavItem eventKey={2} href='/architecture'>Architecture</NavItem>
 							<NavItem eventKey={2} href='/interiors'>Interiors</NavItem>
 							<NavItem eventKey={4} href='/kelly'>Kelly</NavItem>
-							<NavItem eventKey={5} href='/contact'>Contact</NavItem>
+							<NavItem eventKey={5} href='/qualitycheck'>Quality Check</NavItem>
+							<NavItem eventKey={6} href='/contact'>Contact</NavItem>
 						</Nav>
 					</Navbar.Collapse>
 				</Navbar>

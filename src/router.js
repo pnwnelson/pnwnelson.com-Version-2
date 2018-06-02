@@ -6,6 +6,7 @@ import HomePage from "./pages/home";
 import ArchPage from "./pages/exteriors";
 import IntPage from "./pages/interiors";
 import KellyPage from "./pages/kelly";
+import QualityCheck from "./pages/qualitycheck";
 import ContactPage from "./pages/contact";
 import ThankyouPage from "./pages/thankyou";
 import MessagePage from "./pages/message";
@@ -28,6 +29,7 @@ export default Router.extend({
 		architecture: "architecture",
 		interiors: "interiors",
 		kelly: "kelly",
+		qualitycheck: "qualitycheck",
 		contact: "contact",
 		thankyou: "thankyou",
 		"*catchall": "fourOhfour"
@@ -47,6 +49,10 @@ export default Router.extend({
 
 	kelly() {
 		this.renderPage(KellyPage);
+	},
+
+	qualitycheck() {
+		this.renderPage(QualityCheck);
 	},
 
 	contact() {

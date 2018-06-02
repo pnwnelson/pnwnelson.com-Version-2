@@ -105,6 +105,10 @@ h5 {
 	padding-bottom: 65px;
 }
 
+.quality-list li {
+	padding-bottom: 5px;
+}
+
 /* Footer */
 
 footer {
@@ -122,6 +126,12 @@ footer p {
 
 .copyright {
 	font-size: 12px;
+}
+
+@media (max-width: 768px) {
+	.before-after {
+		display: none;
+	}
 }
 
 @media (max-width: 425px) {
