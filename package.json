@@ -20,7 +20,8 @@
     "react-block-image": "^1.0.0",
     "react-bootstrap": "^0.30.8",
     "react-easy-transition": "^1.2.3",
-    "react-ga": "^2.1.2"
+    "react-ga": "^2.1.2",
+    "react-recaptcha": "^2.3.9"
   },
   "devDependencies": {
     "ampersand-app": "^2.0.0",
