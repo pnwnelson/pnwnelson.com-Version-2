@@ -12,7 +12,8 @@ class ContactPage extends Component {
 	constructor() {
 		super();
 		(this.state = {
-			query: ""
+			query: "",
+			captchaShowError: false
 		}),
 			(this.updateQuery = this.updateQuery.bind(this));
 		this.onClick = this.onClick.bind(this);
@@ -40,8 +41,8 @@ class ContactPage extends Component {
 		const captcha = document.getElementById("g-recaptcha-response").value; // Recaptcha verification
 
 		// return
-		fetch("http://localhost:5000/sendmail", {
-		//fetch("https://pnwnelson-prod.herokuapp.com/sendmail", {
+		//fetch("http://localhost:5000/sendmail", {
+		fetch("https://pnwnelson-prod.herokuapp.com/sendmail", {
 			method: "POST",
 			headers: {
 				Accept: "application/json",
@@ -71,7 +72,10 @@ class ContactPage extends Component {
 					return (window.location = "/thankyou");
 					//this.renderPage(ThankyouPage)
 					// 	this.setState({ formSent: true });
-				} else this.setState({ formSent: false });
+				} else 
+				this.setState({ captchaShowError: true })
+				this.setState({ formSent: false });
+				
 			})
 			.catch(error => {
 				console.log(error);
@@ -142,6 +146,11 @@ class ContactPage extends Component {
 						<button type="submit" className="btn btn-primary">
 							Send
 						</button>
+						{ this.state.captchaShowError ? 
+						<div className="error-box alert alert-danger">
+							Please verify you are not a robot by checking the box above the Send button.
+						</div>
+						: null }
 					</form>
 				</div>
 			</div>
