@@ -12,8 +12,7 @@ class ContactPage extends Component {
 	constructor() {
 		super();
 		(this.state = {
-			query: "",
-			captchaShowError: false
+			query: ""
 		}),
 			(this.updateQuery = this.updateQuery.bind(this));
 		this.onClick = this.onClick.bind(this);
@@ -39,10 +38,9 @@ class ContactPage extends Component {
 		const name = document.getElementById("name").value;
 		const message = document.getElementById("message").value;
 		const captcha = document.getElementById("g-recaptcha-response").value; // Recaptcha verification
-
 		// return
-		//fetch("http://localhost:5000/sendmail", {
-		fetch("https://pnwnelson-prod.herokuapp.com/sendmail", {
+		fetch("http://localhost:5000/sendmail", {
+		//fetch("https://pnwnelson-prod.herokuapp.com/sendmail", {
 			method: "POST",
 			headers: {
 				Accept: "application/json",
@@ -55,27 +53,17 @@ class ContactPage extends Component {
 				captcha: captcha
 			})
 		})
-			// .then(function(response) {
-			// 	response
-			// 		.text()
-			// 		.then(function(text) {
-			// 			console.log(text);
-			// 		})
-			// 		.catch(error => {
-			// 			console.log("this was the error: " + error);
-			// 		});
-			// });
 			.then(response => response.json())
 			.then(responseJson => {
 				console.log(responseJson);
 				if (responseJson == "success") {
 					return (window.location = "/thankyou");
-					//this.renderPage(ThankyouPage)
 					// 	this.setState({ formSent: true });
 				} else 
-				this.setState({ captchaShowError: true })
-				this.setState({ formSent: false });
-				
+					this.setState({ formSent: false });
+					//alert(responseJson.msg);
+					// show error div if recaptcha not checked
+					document.getElementById("no-captcha-alert").style.visibility = 'visible';	
 			})
 			.catch(error => {
 				console.log(error);
@@ -143,14 +131,13 @@ class ContactPage extends Component {
 						<div className="form-group">
 							<div className="g-recaptcha" data-sitekey="6LfAwSgTAAAAAEUQy9O23Tea2_VPvTac1S3YZOWN"></div>
 						</div>
+
 						<button type="submit" className="btn btn-primary">
 							Send
 						</button>
-						{ this.state.captchaShowError ? 
-						<div className="error-box alert alert-danger">
-							Please verify you are not a robot by checking the box above the Send button.
+						<div id="no-captcha-alert" className="hidden alert alert-danger">
+							Please verify you are not a robot by checking the box above the submit button.
 						</div>
-						: null }
 					</form>
 				</div>
 			</div>
