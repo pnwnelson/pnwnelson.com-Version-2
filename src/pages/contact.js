@@ -12,14 +12,15 @@ class ContactPage extends Component {
 	constructor() {
 		super();
 		(this.state = {
-			query: "",
-			captchaShowError: false
+			query: "", // empty state for the text field.
+			captchaShowError: false // setting the initial state that will change if the user doesn't check the Recaptcha box
 		}),
 			(this.updateQuery = this.updateQuery.bind(this));
 		this.onClick = this.onClick.bind(this);
 	}
 
 	componentDidMount() {
+		// putting the Google Recaptcha script in the index page file
 		const script = document.createElement("script");
 		script.src = "https://www.google.com/recaptcha/api.js";
 		script.async = true;
@@ -28,20 +29,20 @@ class ContactPage extends Component {
 
 	updateQuery(query) {
 		this.setState({
-			query: query
+			query: query // user typing in text field will update
 		});
 	}
 
 	onClick(e) {
 		e.preventDefault();
 		console.log("Submit button clicked");
+		// variables for  Nodemailer
 		const email = document.getElementById("email").value;
 		const name = document.getElementById("name").value;
 		const message = document.getElementById("message").value;
 		const captcha = document.getElementById("g-recaptcha-response").value; // Recaptcha verification
-
-		// return
-		//fetch("http://localhost:5000/sendmail", {
+		//fetch("http://localhost:5000/sendmail", { // temporary for development
+		// API connection for Nodemailer	
 		fetch("https://pnwnelson-prod.herokuapp.com/sendmail", {
 			method: "POST",
 			headers: {
@@ -68,12 +69,13 @@ class ContactPage extends Component {
 			.then(response => response.json())
 			.then(responseJson => {
 				console.log(responseJson);
+				// If the email was sent, send a success response
 				if (responseJson == "success") {
-					return (window.location = "/thankyou");
+					return (window.location = "/thankyou"); // if response was success, redirect to the Thank You page
 					//this.renderPage(ThankyouPage)
 					// 	this.setState({ formSent: true });
 				} else 
-				this.setState({ captchaShowError: true })
+				this.setState({ captchaShowError: true }) // if the Recaptcha box wasn't checked, change state and re-render to show hidden error div
 				this.setState({ formSent: false });
 				
 			})
@@ -83,7 +85,7 @@ class ContactPage extends Component {
 	}
 
 	render() {
-		const { query } = this.state;
+		const { query } = this.state; // for the text field
 
 		return (
 			<div className="row">
