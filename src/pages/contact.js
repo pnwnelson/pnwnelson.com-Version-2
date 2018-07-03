@@ -13,7 +13,8 @@ class ContactPage extends Component {
 		super();
 		(this.state = {
 			query: "", // empty state for the text field.
-			captchaShowError: false // setting the initial state that will change if the user doesn't check the Recaptcha box
+			captchaShowError: false, // setting the initial state that will change if the user doesn't check the Recaptcha box
+			sendInProcess: false // setting the initial state for the spinner
 		}),
 			(this.updateQuery = this.updateQuery.bind(this));
 		this.onClick = this.onClick.bind(this);
@@ -34,8 +35,10 @@ class ContactPage extends Component {
 	}
 
 	onClick(e) {
+		this.setState({ sendInProgress: true }); // changing state to show spinner	
 		e.preventDefault();
 		console.log("Submit button clicked");
+
 		// variables for  Nodemailer
 		const email = document.getElementById("email").value;
 		const name = document.getElementById("name").value;
@@ -73,11 +76,10 @@ class ContactPage extends Component {
 				if (responseJson == "success") {
 					return (window.location = "/thankyou"); // if response was success, redirect to the Thank You page
 					//this.renderPage(ThankyouPage)
-					// 	this.setState({ formSent: true });
+					this.setState({ sendInProgress: false }); // change state to hide spinner
 				} else 
 				this.setState({ captchaShowError: true }) // if the Recaptcha box wasn't checked, change state and re-render to show hidden error div
-				this.setState({ formSent: false });
-				
+				this.setState({ sendInProgress: false }); // change state to hide spinner	
 			})
 			.catch(error => {
 				console.log(error);
@@ -114,6 +116,7 @@ class ContactPage extends Component {
 										id="name"
 										name="name"
 										placeholder="Enter Name"
+										required
 									/>
 								</div>
 							</div>
@@ -126,6 +129,7 @@ class ContactPage extends Component {
 										id="email"
 										name="email"
 										placeholder="Enter Email Address"
+										required
 									/>
 								</div>
 							</div>
@@ -140,6 +144,7 @@ class ContactPage extends Component {
 								placeholder="Tell me about your project"
 								value={query}
 								onChange={event => this.updateQuery(event.target.value)}
+								required
 							/>
 						</div>
 						<div className="form-group">
@@ -148,6 +153,11 @@ class ContactPage extends Component {
 						<button type="submit" className="btn btn-primary">
 							Send
 						</button>
+{ this.state.sendInProgress ?
+						<div className="spinner-container">
+		           <h3 className="spinner-text">Sending...</h3>
+		        </div>
+		        : null }
 						{ this.state.captchaShowError ? 
 						<div className="error-box alert alert-danger">
 							Please verify you are not a robot by checking the box above the Send button.
