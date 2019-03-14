@@ -12,14 +12,16 @@ class ContactPage extends Component {
 	constructor() {
 		super();
 		(this.state = {
-			query: "",
-			captchaShowError: false
+			query: "", // empty state for the text field.
+			captchaShowError: false, // setting the initial state that will change if the user doesn't check the Recaptcha box
+			sendInProcess: false // setting the initial state for the spinner
 		}),
 			(this.updateQuery = this.updateQuery.bind(this));
 		this.onClick = this.onClick.bind(this);
 	}
 
 	componentDidMount() {
+		// putting the Google Recaptcha script in the index page file
 		const script = document.createElement("script");
 		script.src = "https://www.google.com/recaptcha/api.js";
 		script.async = true;
@@ -28,20 +30,22 @@ class ContactPage extends Component {
 
 	updateQuery(query) {
 		this.setState({
-			query: query
+			query: query // user typing in text field will update
 		});
 	}
 
 	onClick(e) {
+		this.setState({ sendInProgress: true }); // changing state to show spinner	
 		e.preventDefault();
 		console.log("Submit button clicked");
+
+		// variables for  Nodemailer
 		const email = document.getElementById("email").value;
 		const name = document.getElementById("name").value;
 		const message = document.getElementById("message").value;
 		const captcha = document.getElementById("g-recaptcha-response").value; // Recaptcha verification
-
-		// return
-		//fetch("http://localhost:5000/sendmail", {
+		// fetch("http://localhost:3001/sendmail", { // temporary for development
+		// API connection for Nodemailer	
 		fetch("https://pnwnelson-prod.herokuapp.com/sendmail", {
 			method: "POST",
 			headers: {
@@ -55,35 +59,25 @@ class ContactPage extends Component {
 				captcha: captcha
 			})
 		})
-			// .then(function(response) {
-			// 	response
-			// 		.text()
-			// 		.then(function(text) {
-			// 			console.log(text);
-			// 		})
-			// 		.catch(error => {
-			// 			console.log("this was the error: " + error);
-			// 		});
-			// });
 			.then(response => response.json())
 			.then(responseJson => {
 				console.log(responseJson);
+				// If the email was sent, send a success response
 				if (responseJson == "success") {
-					return (window.location = "/thankyou");
-					//this.renderPage(ThankyouPage)
-					// 	this.setState({ formSent: true });
+					return (window.location = "/thankyou"); // if response was success, redirect to the Thank You page
+					// this.renderPage(ThankyouPage)
+					this.setState({ sendInProgress: false }); // change state to hide spinner
 				} else 
-				this.setState({ captchaShowError: true })
-				this.setState({ formSent: false });
-				
+				this.setState({ captchaShowError: true }) // if the Recaptcha box wasn't checked, change state and re-render to show hidden error div
+				this.setState({ sendInProgress: false }); // change state to hide spinner	
 			})
 			.catch(error => {
-				console.log(error);
+				console.error(error);
 			});
 	}
 
 	render() {
-		const { query } = this.state;
+		const { query } = this.state; // for the text field
 
 		return (
 			<div className="row">
@@ -112,6 +106,7 @@ class ContactPage extends Component {
 										id="name"
 										name="name"
 										placeholder="Enter Name"
+										required
 									/>
 								</div>
 							</div>
@@ -124,6 +119,7 @@ class ContactPage extends Component {
 										id="email"
 										name="email"
 										placeholder="Enter Email Address"
+										required
 									/>
 								</div>
 							</div>
@@ -138,6 +134,7 @@ class ContactPage extends Component {
 								placeholder="Tell me about your project"
 								value={query}
 								onChange={event => this.updateQuery(event.target.value)}
+								required
 							/>
 						</div>
 						<div className="form-group">
@@ -146,6 +143,11 @@ class ContactPage extends Component {
 						<button type="submit" className="btn btn-primary">
 							Send
 						</button>
+						{ this.state.sendInProgress ?
+							<div className="spinner-container">
+		           				<h3 className="spinner-text">Sending...</h3>
+		        			</div>
+		        		: null }
 						{ this.state.captchaShowError ? 
 						<div className="error-box alert alert-danger">
 							Please verify you are not a robot by checking the box above the Send button.
