@@ -44,7 +44,7 @@ class ContactPage extends Component {
 		const name = document.getElementById("name").value;
 		const message = document.getElementById("message").value;
 		const captcha = document.getElementById("g-recaptcha-response").value; // Recaptcha verification
-		//fetch("http://localhost:5000/sendmail", { // temporary for development
+		// fetch("http://localhost:5000/sendmail", { // temporary for development
 		// API connection for Nodemailer	
 		fetch("https://pnwnelson-prod.herokuapp.com/sendmail", {
 			method: "POST",
