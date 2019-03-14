@@ -44,7 +44,7 @@ class ContactPage extends Component {
 		const name = document.getElementById("name").value;
 		const message = document.getElementById("message").value;
 		const captcha = document.getElementById("g-recaptcha-response").value; // Recaptcha verification
-		// fetch("http://localhost:5000/sendmail", { // temporary for development
+		// fetch("http://localhost:3001/sendmail", { // temporary for development
 		// API connection for Nodemailer	
 		fetch("https://pnwnelson-prod.herokuapp.com/sendmail", {
 			method: "POST",
@@ -59,30 +59,20 @@ class ContactPage extends Component {
 				captcha: captcha
 			})
 		})
-			// .then(function(response) {
-			// 	response
-			// 		.text()
-			// 		.then(function(text) {
-			// 			console.log(text);
-			// 		})
-			// 		.catch(error => {
-			// 			console.log("this was the error: " + error);
-			// 		});
-			// });
 			.then(response => response.json())
 			.then(responseJson => {
 				console.log(responseJson);
 				// If the email was sent, send a success response
 				if (responseJson == "success") {
 					return (window.location = "/thankyou"); // if response was success, redirect to the Thank You page
-					//this.renderPage(ThankyouPage)
+					// this.renderPage(ThankyouPage)
 					this.setState({ sendInProgress: false }); // change state to hide spinner
 				} else 
 				this.setState({ captchaShowError: true }) // if the Recaptcha box wasn't checked, change state and re-render to show hidden error div
 				this.setState({ sendInProgress: false }); // change state to hide spinner	
 			})
 			.catch(error => {
-				console.log(error);
+				console.error(error);
 			});
 	}
 
@@ -153,11 +143,11 @@ class ContactPage extends Component {
 						<button type="submit" className="btn btn-primary">
 							Send
 						</button>
-{ this.state.sendInProgress ?
-						<div className="spinner-container">
-		           <h3 className="spinner-text">Sending...</h3>
-		        </div>
-		        : null }
+						{ this.state.sendInProgress ?
+							<div className="spinner-container">
+		           				<h3 className="spinner-text">Sending...</h3>
+		        			</div>
+		        		: null }
 						{ this.state.captchaShowError ? 
 						<div className="error-box alert alert-danger">
 							Please verify you are not a robot by checking the box above the Send button.
