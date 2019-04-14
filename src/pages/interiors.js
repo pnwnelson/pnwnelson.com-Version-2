@@ -17,7 +17,7 @@ export default class IntPage extends Component {
 	}
 
 	componentDidMount() {
-		const API_KEY = process.env.REACT_APP_FLICKR_API_KEY
+		const API_KEY = '3ab694c0389174d227b10d363b55d94f'
 		const API_ENDPOINT = `https://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=${API_KEY}&photoset_id=72157684641469940&format=json&nojsoncallback=1`
 
 		fetch(API_ENDPOINT).then((response) => {
