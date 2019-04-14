@@ -15,7 +15,7 @@ export default class ArchPage extends Component {
 	}
 
 	componentDidMount() {
-		const API_KEY = process.env.FLICKR_API_KEY
+		const API_KEY = process.env.REACT_APP_FLICKR_API_KEY
 		const API_ENDPOINT = `https://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=${API_KEY}&photoset_id=72157681626847286&user_id=8840737%40N07&format=json&nojsoncallback=1`
 
 		fetch(API_ENDPOINT).then((response) => {
