@@ -5,7 +5,7 @@ export default React.createClass ({
   displayName: 'QualityCheckPhoto',
 
   render () {
-    const before = 'https://farm5.staticflickr.com/4365/36197804414_f091351172_h.jpg'
+    const before = 'https://farm5.staticflickr.com/4365/36197804414_f091351172_b.jpg'
     const after = 'https://photos.smugmug.com/Other/Architecture/n-fvWdJc/i-SCfBzc6/0/1579225d/X2/i-SCfBzc6-X2.jpg'
  
     return (
