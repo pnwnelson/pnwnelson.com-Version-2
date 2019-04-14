@@ -23,7 +23,7 @@ export default class IntPage extends Component {
 		fetch(API_ENDPOINT).then((response) => {
 			return response.json().then((json) => {
 				const images = json.photoset.photo.map(({farm, server, id, secret}) => {
-					return `https://farm${farm}.staticflickr.com/${server}/${id}_${secret}.jpg`
+					return `https://farm${farm}.staticflickr.com/${server}/${id}_${secret}_b.jpg`
 				})
 				this.setState({images, selectedImage: images[0]})
 			})
