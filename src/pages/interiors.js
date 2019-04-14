@@ -17,15 +17,13 @@ export default class IntPage extends Component {
 	}
 
 	componentDidMount() {
-		const API_KEY = '3ab694c0389174d227b10d363b55d94f'
+		const API_KEY = process.env.REACT_APP_FLICKR_API_KEY
 		const API_ENDPOINT = `https://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=${API_KEY}&photoset_id=72157684641469940&format=json&nojsoncallback=1`
-
-
 
 		fetch(API_ENDPOINT).then((response) => {
 			return response.json().then((json) => {
 				const images = json.photoset.photo.map(({farm, server, id, secret}) => {
-					return `https://farm${farm}.staticflickr.com/${server}/${id}_${secret}_h.jpg`
+					return `https://farm${farm}.staticflickr.com/${server}/${id}_${secret}.jpg`
 				})
 				this.setState({images, selectedImage: images[0]})
 			})
