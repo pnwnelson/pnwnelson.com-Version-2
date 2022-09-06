@@ -80,83 +80,88 @@ class ContactPage extends Component {
 		const { query } = this.state; // for the text field
 
 		return (
-			<div className="row">
-				<div className="col-xs-12 col-lg-8">
-					<h1>Hire Quality</h1>
-					<hr />
-					<p>
-						I am based out of the Tri-Cities, Washington (Richland, Pasco
-						Kennewick) but am available to work in the Pacific Northwest and
-						beyond.
-					</p>
-					<p>
-						If you like my photography work, let's talk. Just let me know some
-						details about your project and I'll get back with you as soon as I
-						can.
-					</p>
+      <div className="row">
+        <div className="col-xs-12 col-lg-8">
+          <h1>Hire Quality</h1>
+          <hr />
+          <p>
+            I am based out of the Tri-Cities, Washington (Richland, Pasco
+            Kennewick) but am available to work in the Pacific Northwest and
+            beyond.
+          </p>
+          <p>
+            If you like my photography work, let's talk. Just let me know some
+            details about your project and I'll get back with you as soon as I
+            can.
+          </p>
 
-					<form onSubmit={this.onClick}>
-						<div className="row">
-							<div className="col-xs-6">
-								<div className="input-field">
-									<label htmlFor="name">Name</label>
-									<input
-										className="form-control"
-										type="text"
-										id="name"
-										name="name"
-										placeholder="Enter Name"
-										required
-									/>
-								</div>
-							</div>
-							<div className="col-xs-6">
-								<div className="form-group">
-									<label htmlFor="email">Email</label>
-									<input
-										className="form-control"
-										type="email"
-										id="email"
-										name="email"
-										placeholder="Enter Email Address"
-										required
-									/>
-								</div>
-							</div>
-						</div>
-						<div className="form-group">
-							<label htmlFor="message">How can I help?</label>
-							<textarea
-								className="form-control"
-								rows="4"
-								id="message"
-								name="message"
-								placeholder="Tell me about your project"
-								value={query}
-								onChange={event => this.updateQuery(event.target.value)}
-								required
-							/>
-						</div>
-						<div className="form-group">
-							<div className="g-recaptcha" data-sitekey="6LfAwSgTAAAAAEUQy9O23Tea2_VPvTac1S3YZOWN"></div>
-						</div>
-						<button type="submit" className="btn btn-primary">
-							Send
-						</button>
-						{ this.state.sendInProgress ?
-							<div className="spinner-container">
-		           				<h3 className="spinner-text">Sending...</h3>
-		        			</div>
-		        		: null }
-						{ this.state.captchaShowError ? 
-						<div className="error-box alert alert-danger">
-							Please verify you are not a robot by checking the box above the Send button.
-						</div>
-						: null }
-					</form>
-				</div>
-			</div>
-		);
+          <form name="contact" method="POST">
+            <input type="hidden" name="form-name" value="contact" />
+            <div className="row">
+              <div className="col-xs-6">
+                <div className="input-field">
+                  <label htmlFor="name">Name</label>
+                  <input
+                    className="form-control"
+                    type="text"
+                    id="name"
+                    name="name"
+                    placeholder="Enter Name"
+                    required
+                  />
+                </div>
+              </div>
+              <div className="col-xs-6">
+                <div className="form-group">
+                  <label htmlFor="email">Email</label>
+                  <input
+                    className="form-control"
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="Enter Email Address"
+                    required
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="form-group">
+              <label htmlFor="message">How can I help?</label>
+              <textarea
+                className="form-control"
+                rows="4"
+                id="message"
+                name="message"
+                placeholder="Tell me about your project"
+                value={query}
+                onChange={(event) => this.updateQuery(event.target.value)}
+                required
+              />
+            </div>
+            <div className="form-group">
+              <div
+                className="g-recaptcha"
+                data-sitekey="6LfAwSgTAAAAAEUQy9O23Tea2_VPvTac1S3YZOWN"
+              ></div>
+            </div>
+            <button type="submit" className="btn btn-primary">
+              Send
+            </button>
+            {this.state.sendInProgress ? (
+              <div className="spinner-container">
+                <h3 className="spinner-text">Sending...</h3>
+              </div>
+            ) : null}
+            {this.state.captchaShowError ? (
+              <div className="error-box alert alert-danger">
+                Please verify you are not a robot by checking the box above the
+                Send button.
+              </div>
+            ) : null}
+          </form>
+        </div>
+      </div>
+    );
 	}
 }
 

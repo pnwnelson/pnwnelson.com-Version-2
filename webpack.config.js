@@ -21,17 +21,21 @@ var config = getConfig({
 		);
 
 		return {
-			"200.html": data.defaultTemplate({
-				head: `<link rel="shortcut icon" href="favicon.ico">`,
-				head: `<meta name="description" content="Kelly Nelson offers beautiful and professional architectural and real estate photography based in the Pacific Northwest. Photographer serving Seattle, Portland, Spokane, Tri-Cities and beyond.">`
-			}),
-			"index.html": data.defaultTemplate({
-				title: "Kelly Nelson | Pacific Northwest Architectural Photographer",
-				head: `<link rel="shortcut icon" href="favicon.ico">`,
-				head: `<meta name="description" content="Kelly Nelson offers beautiful and professional architectural and real estate photography based in the Pacific Northwest. Photographer serving Seattle, Portland, Spokane, Tri-Cities and beyond.">`,
-				html: `<div id='root'>${layoutPageHtmlString}</div>`
-			})
-		};
+      "200.html": data.defaultTemplate({
+        head: `<link rel="shortcut icon" href="favicon.ico">`,
+        head: `<meta name="description" content="Kelly Nelson offers beautiful and professional architectural and real estate photography based in the Pacific Northwest. Photographer serving Seattle, Portland, Spokane, Tri-Cities and beyond.">`,
+      }),
+      "index.html": data.defaultTemplate({
+        title: "Kelly Nelson | Pacific Northwest Architectural Photographer",
+        head: `<link rel="shortcut icon" href="favicon.ico">`,
+        head: `<meta name="description" content="Kelly Nelson offers beautiful and professional architectural and real estate photography based in the Pacific Northwest. Photographer serving Seattle, Portland, Spokane, Tri-Cities and beyond.">`,
+        html: `<form name="contact" netlify netlify-honeypot="bot-field" hidden>
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <textarea name="message"></textarea>
+    </form><div id='root'>${layoutPageHtmlString}</div>`,
+      }),
+    };
 	}
 });
 
