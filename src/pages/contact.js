@@ -95,7 +95,7 @@ class ContactPage extends Component {
 						can.
 					</p>
 
-					<form name="contact" method="POST" data-netlify="true">
+					<form name="contact" method="POST" netlify>
 						<div className="row">
 							<div className="col-xs-6">
 								<div className="input-field">
