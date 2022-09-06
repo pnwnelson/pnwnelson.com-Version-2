@@ -95,7 +95,7 @@ class ContactPage extends Component {
 						can.
 					</p>
 
-					<form onSubmit={this.onClick}>
+					<form name="contact" method="POST" data-netlify="true">
 						<div className="row">
 							<div className="col-xs-6">
 								<div className="input-field">
