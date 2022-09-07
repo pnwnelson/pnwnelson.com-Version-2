@@ -30,7 +30,7 @@ var config = getConfig({
         head: `<link rel="shortcut icon" href="favicon.ico">`,
         head: `<meta name="description" content="Kelly Nelson offers beautiful and professional architectural and real estate photography based in the Pacific Northwest. Photographer serving Seattle, Portland, Spokane, Tri-Cities and beyond.">`,
         html: `<form name="contact" netlify netlify-honeypot="bot-field" hidden>
-      <input type="text" name="name" />
+      <input type="name" name="name" />
       <input type="email" name="email" />
       <textarea name="message"></textarea>
     </form><div id='root'>${layoutPageHtmlString}</div>`,
