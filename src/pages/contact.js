@@ -13,20 +13,20 @@ class ContactPage extends Component {
 		super();
 		(this.state = {
 			query: "", // empty state for the text field.
-			captchaShowError: false, // setting the initial state that will change if the user doesn't check the Recaptcha box
+			//captchaShowError: false, // setting the initial state that will change if the user doesn't check the Recaptcha box
 			sendInProcess: false // setting the initial state for the spinner
 		}),
 			(this.updateQuery = this.updateQuery.bind(this));
 		this.onClick = this.onClick.bind(this);
 	}
 
-	componentDidMount() {
-		// putting the Google Recaptcha script in the index page file
-		const script = document.createElement("script");
-		script.src = "https://www.google.com/recaptcha/api.js";
-		script.async = true;
-		document.body.appendChild(script);
-	}
+	// componentDidMount() {
+	// 	// putting the Google Recaptcha script in the index page file
+	// 	const script = document.createElement("script");
+	// 	script.src = "https://www.google.com/recaptcha/api.js";
+	// 	script.async = true;
+	// 	document.body.appendChild(script);
+	// }
 
 	updateQuery(query) {
 		this.setState({
@@ -133,16 +133,8 @@ class ContactPage extends Component {
                 id="message"
                 name="message"
                 placeholder="Tell me about your project"
-                value={query}
-                onChange={(event) => this.updateQuery(event.target.value)}
                 required
               />
-            </div>
-            <div className="form-group">
-              <div
-                className="g-recaptcha"
-                data-sitekey="6LfAwSgTAAAAAEUQy9O23Tea2_VPvTac1S3YZOWN"
-              ></div>
             </div>
             <button type="submit" className="btn btn-primary">
               Send
@@ -150,12 +142,6 @@ class ContactPage extends Component {
             {this.state.sendInProgress ? (
               <div className="spinner-container">
                 <h3 className="spinner-text">Sending...</h3>
-              </div>
-            ) : null}
-            {this.state.captchaShowError ? (
-              <div className="error-box alert alert-danger">
-                Please verify you are not a robot by checking the box above the
-                Send button.
               </div>
             ) : null}
           </form>
